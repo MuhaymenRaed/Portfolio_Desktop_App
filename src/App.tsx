@@ -1,9 +1,10 @@
 import React from "react";
 import profileImg from "./assets/image.png";
+import orphanageImg from "./assets/hero.png";
 import { motion } from "framer-motion";
-import { Sun, Moon, Zap, Mail, ArrowUpRight, Code } from "lucide-react";
+import { Sun, Moon, Zap, Mail, ArrowUpRight, Code, Download, FileText } from "lucide-react";
+import { FigmaLogo } from "@phosphor-icons/react";
 
-// Project Type Definition
 interface Project {
   title: string;
   description: string;
@@ -12,8 +13,11 @@ interface Project {
   impact: string;
   techStack: string[];
   isFinished: boolean;
+  isComingSoon?: boolean;
   link: string;
   githubUrl: string;
+  figmaUrl?: string;
+  image?: string;
 }
 
 const projects: Project[] = [
@@ -65,13 +69,13 @@ const projects: Project[] = [
   {
     title: "Orphanage Management System",
     description:
-      "A secure, real-time ecosystem designed to streamline orphan care operations and sensitive data management of Sponsorships.",
+      "A secure, real-time ecosystem designed to streamline orphan care operations and sensitive sponsorship data management — built with full role-based access control and a centralized operational dashboard.",
     problem:
       "Inefficient manual tracking of resident data, leading to fragmented records and delayed administrative responses.",
     solution:
       "Architected a centralized dashboard using TypeScript and Supabase, featuring real-time synchronization and secure role-based access control.",
     impact:
-      "Drastic reduction in administrative overhead and improved data integrity for 100% of resident records.",
+      "Drastic reduction in administrative overhead and improved data integrity for 100% of resident records, eliminating fragmented manual tracking.",
     techStack: [
       "React",
       "TypeScript",
@@ -80,9 +84,46 @@ const projects: Project[] = [
       "React Query",
       "Framer Motion",
     ],
-    isFinished: false,
-    link: "#works",
+    isFinished: true,
+    link: "https://orphange-management-system.netlify.app/overview",
     githubUrl: "https://github.com/MuhaymenRaed/Orphan-Management-System.git",
+    image: orphanageImg,
+  },
+  {
+    title: "Prayer Manager",
+    description:
+      "A cross-platform mobile application built with React Native and Expo, empowering users to manage, track, and deepen their daily prayer routines — with location-based prayer times, streak-driven consistency tracking, fully customizable notifications, and seamless bilingual support.",
+    problem:
+      "Existing solutions offer isolated features without combining them into a coherent, personalized, and habit-forming daily spiritual experience.",
+    solution:
+      "Built a unified mobile experience bringing together location-aware prayer times, visual streak tracking, customizable reminders, and bilingual support — a single app that grows with the user's spiritual practice.",
+    impact:
+      "Enables users to build consistent prayer habits with actionable insights, personal goal-setting, and a fully tailored spiritual companion on both iOS and Android.",
+    techStack: ["React Native", "Expo", "Supabase", "TypeScript", "Tailwind CSS"],
+    isFinished: false,
+    isComingSoon: true,
+    link: "#",
+    githubUrl: "https://github.com/MuhaymenRaed/Prayer_Manger",
+    figmaUrl:
+      "https://www.figma.com/make/iKuwZfVo8xr7U9BZE3K6mA/Islamic-Prayer-Manager-App",
+  },
+  {
+    title: "Rofoof",
+    description:
+      "A premium full-stack e-commerce platform for stickers, brooches, 3D-printed products, and posters — featuring deep search, real-time order tracking, a fully-featured bilingual admin dashboard, dark/light mode, user wishlists, and personalized profile preferences.",
+    problem:
+      "Independent artists and small creative brands lack a sophisticated digital storefront with the deep management capabilities that match the quality of their craft.",
+    solution:
+      "Architected a full-stack commerce platform featuring a bilingual UI, an exhaustive admin dashboard, real-time order visibility, and advanced product discovery — delivering department-store functionality for a boutique brand.",
+    impact:
+      "Delivers an elegant, brand-aligned shopping experience that gives store administrators complete operational control while offering customers a world-class discovery and checkout flow.",
+    techStack: ["Next.js", "Supabase", "TypeScript", "Tailwind CSS"],
+    isFinished: false,
+    isComingSoon: true,
+    link: "#",
+    githubUrl: "#",
+    figmaUrl:
+      "https://www.figma.com/make/Q5RhGkThghKUWSNRfjf9fl/E-Commerce-Platform-Design?t=BMA0BbPWRoQ4qOWF-1",
   },
 ];
 
@@ -169,13 +210,55 @@ export default function App() {
             Building the next generation of digital excellence with{" "}
             <span className="text-text">React, Next.js, and TypeScript.</span>
           </p>
-          <a
-            href="#works"
-            className="group flex items-center gap-3 text-sm font-black uppercase tracking-widest pt-4"
-          >
-            View My Works{" "}
-            <ArrowUpRight className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-          </a>
+
+          {/* CTAs */}
+          <div className="space-y-5 pt-4">
+            <a
+              href="#works"
+              className="group flex items-center gap-3 text-sm font-black uppercase tracking-widest"
+            >
+              View My Works{" "}
+              <ArrowUpRight className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+            </a>
+
+            {/* CV Download Buttons */}
+            <div className="flex items-center gap-3 flex-wrap">
+              <a
+                href="/en-cv.pdf"
+                download="Muhaymen_Raed_CV.pdf"
+                className="group inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full border-2 border-border hover:border-accent bg-bg-secondary hover:bg-accent/5 transition-all duration-300"
+              >
+                <FileText
+                  size={14}
+                  className="text-text2 group-hover:text-accent transition-colors"
+                />
+                <span className="text-[10px] font-black uppercase tracking-[0.2em] text-text group-hover:text-accent transition-colors">
+                  English CV
+                </span>
+                <Download
+                  size={12}
+                  className="text-text2 group-hover:text-accent transition-colors"
+                />
+              </a>
+              <a
+                href="/ar-cv.pdf"
+                download="مهيمن_رائد_السيرة_الذاتية.pdf"
+                className="group inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full border-2 border-border hover:border-accent bg-bg-secondary hover:bg-accent/5 transition-all duration-300"
+              >
+                <FileText
+                  size={14}
+                  className="text-text2 group-hover:text-accent transition-colors"
+                />
+                <span className="text-[10px] font-black tracking-[0.1em] text-text group-hover:text-accent transition-colors">
+                  السيرة الذاتية
+                </span>
+                <Download
+                  size={12}
+                  className="text-text2 group-hover:text-accent transition-colors"
+                />
+              </a>
+            </div>
+          </div>
         </div>
 
         <div className="relative flex justify-center lg:justify-end">
@@ -216,8 +299,23 @@ export default function App() {
           {projects.map((proj, idx) => (
             <div
               key={idx}
-              className="group relative grid grid-cols-1 lg:grid-cols-[1fr_400px] gap-12 p-8 md:p-16 rounded-[3rem] border border-border hover:border-accent/50 bg-bg-secondary transition-all"
+              className={`group relative grid grid-cols-1 lg:grid-cols-[1fr_400px] gap-12 p-8 md:p-16 rounded-[3rem] border transition-all ${
+                proj.isComingSoon
+                  ? "border-border/40 bg-bg-secondary/60"
+                  : "border-border hover:border-accent/50 bg-bg-secondary"
+              }`}
             >
+              {/* Coming Soon ribbon */}
+              {proj.isComingSoon && (
+                <div className="absolute top-8 right-8 flex items-center gap-2 bg-bg px-4 py-2 rounded-full border border-purple-500/20 z-10">
+                  <span className="w-1.5 h-1.5 rounded-full bg-purple-400 animate-pulse" />
+                  <span className="text-[9px] font-black uppercase tracking-[0.3em] text-purple-400">
+                    In Development
+                  </span>
+                </div>
+              )}
+
+              {/* LEFT: TEXT CONTENT */}
               <div className="space-y-10">
                 <header className="space-y-4">
                   <div className="flex items-center gap-4">
@@ -275,38 +373,89 @@ export default function App() {
                 </div>
               </div>
 
-              {/* ELEGANT VISIT BUTTON */}
+              {/* RIGHT: CONTROLS */}
               <div className="flex flex-col justify-between items-end gap-8">
-                <a
-                  href={proj.link}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="relative w-24 h-24 rounded-full border-2 border-accent flex items-center justify-center transition-all duration-500 hover:bg-accent group/btn overflow-hidden"
-                >
-                  <motion.div className="absolute inset-0 bg-accent translate-y-full group-hover/btn:translate-y-0 transition-transform duration-500" />
-                  <ArrowUpRight
-                    size={32}
-                    className="relative z-10 text-accent group-hover/btn:text-black group-hover/btn:rotate-45 transition-all duration-500"
-                  />
-                </a>
+                {/* Project preview image */}
+                {proj.image && (
+                  <div className="w-full overflow-hidden rounded-2xl border border-border group-hover:border-accent/30 transition-colors duration-500">
+                    <img
+                      src={proj.image}
+                      alt={`${proj.title} preview`}
+                      className="w-full h-52 object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                  </div>
+                )}
 
-                <div className="flex flex-col items-end gap-4">
-                  <span
-                    className={`text-[10px] font-black uppercase tracking-[0.2em] px-4 py-2 rounded-full border ${proj.isFinished ? "border-green-500/30 text-green-500" : "border-yellow-500/30 text-yellow-500"}`}
-                  >
-                    {proj.isFinished ? "● Live Project" : "○ In Development"}
-                  </span>
+                {/* Visit button or Coming Soon indicator */}
+                {proj.isComingSoon ? (
+                  <div className="w-24 h-24 rounded-full border-2 border-dashed border-purple-500/30 flex items-center justify-center">
+                    <span className="text-[8px] font-black uppercase tracking-wider text-purple-400/60 text-center leading-tight px-2">
+                      Coming
+                      <br />
+                      Soon
+                    </span>
+                  </div>
+                ) : (
                   <a
-                    href={proj.githubUrl}
+                    href={proj.link}
                     target="_blank"
                     rel="noreferrer"
-                    className="flex items-center gap-2 text-text2 hover:text-white transition-colors"
+                    className="relative w-24 h-24 rounded-full border-2 border-accent flex items-center justify-center transition-all duration-500 hover:bg-accent group/btn overflow-hidden"
                   >
-                    <Code size={16} />
-                    <span className="text-[10px] font-bold uppercase tracking-widest">
-                      Source Code
-                    </span>
+                    <motion.div className="absolute inset-0 bg-accent translate-y-full group-hover/btn:translate-y-0 transition-transform duration-500" />
+                    <ArrowUpRight
+                      size={32}
+                      className="relative z-10 text-accent group-hover/btn:text-black group-hover/btn:rotate-45 transition-all duration-500"
+                    />
                   </a>
+                )}
+
+                {/* Status badge + links */}
+                <div className="flex flex-col items-end gap-4">
+                  <span
+                    className={`text-[10px] font-black uppercase tracking-[0.2em] px-4 py-2 rounded-full border ${
+                      proj.isComingSoon
+                        ? "border-purple-500/30 text-purple-400"
+                        : proj.isFinished
+                          ? "border-green-500/30 text-green-500"
+                          : "border-yellow-500/30 text-yellow-500"
+                    }`}
+                  >
+                    {proj.isComingSoon
+                      ? "◈ Coming Soon"
+                      : proj.isFinished
+                        ? "● Live Project"
+                        : "○ In Development"}
+                  </span>
+
+                  <div className="flex items-center gap-5">
+                    {proj.githubUrl !== "#" && (
+                      <a
+                        href={proj.githubUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="flex items-center gap-2 text-text2 hover:text-white transition-colors"
+                      >
+                        <Code size={16} />
+                        <span className="text-[10px] font-bold uppercase tracking-widest">
+                          Code
+                        </span>
+                      </a>
+                    )}
+                    {proj.figmaUrl && (
+                      <a
+                        href={proj.figmaUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="flex items-center gap-2 text-text2 hover:text-[#a259ff] transition-colors"
+                      >
+                        <FigmaLogo size={16} />
+                        <span className="text-[10px] font-bold uppercase tracking-widest">
+                          Design
+                        </span>
+                      </a>
+                    )}
+                  </div>
                 </div>
               </div>
             </div>
